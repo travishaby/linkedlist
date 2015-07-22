@@ -16,7 +16,7 @@ class LinkedList
     @handle.next_node = node
     node.next_node = first_element
   end
-  #internal method
+
   def find_tail(node = @handle)
     return node if node.next_node.nil?
     find_tail(node.next_node)
@@ -30,12 +30,18 @@ class LinkedList
     new_node = Node.new(data)
     find_tail.next_node = new_node
   end
-#####THINGS TO DO#####
+
   def insert(data, position)
-    new_node = Node.new(data)
-    #at position, store node.next_node
-    #pass position's node.next_node into new node.next_node w/ inserted data
-    #change position's node.next_node to inserted node
+    if @handle.tail?
+      append(data)
+    else
+      new_node = Node.new(data)
+      node_before_index = find_by_index(position - 1)
+      node_in_front = node_before_index.next_node
+      node_before_index.next_node = new_node
+      new_node.next_node = node_in_front
+      new_node
+    end
   end
 
   def includes?(target_data)
@@ -48,26 +54,76 @@ class LinkedList
 
   def find_by_index(position)
     current_node = @handle
-    counter = 0
-    while current_node != position
+    counter = -1
+    while counter != position
       current_node = current_node.next_node
       counter += 1
     end
     current_node
-    #count from the handle (handle is 0)
-    #loop using until, += counter value each loop
-    #take position value, move up to next_node until position == counter
   end
 
+  def shift #oops, thought pop was shift when i wrote it
+    if @handle.tail?
+      StandardError
+    else
+      popping_node = @handle.next_node
+      @handle.next_node = popping_node.next_node
+      popping_node
+    end
+  end
 
-  #.....etc......
+  def pop
+    if @handle.tail?
+      nil
+    else
+      node = @handle
+      until node.next_node.tail?
+        node = node.next_node
+      end
+      popped = node.next_node
+      node.next_node = nil; popped
+    end
+  end
 
-# insert an element at an arbitrary position in the list
-# pop an element from the end of the list
-# count the number of elements in the list
-# return the tail value at the end of the list
-# find_by_index find the value at a numeric position
-# find_by_value finds the position of the first occurrence of a value
-# remove_by_index removes the value at the specified index
-# remove_by_value removes the first occurrence of the specified value
+  def count
+    current_node = @handle
+    counter = 0
+    while current_node.next_node != nil
+      current_node = current_node.next_node
+      counter += 1
+    end
+    counter
+  end
+
+  def find_by_value(data)
+    if @handle.tail?
+      false
+    else
+      current_node = @handle.next_node
+      while current_node.data != data
+        current_node = current_node.next_node
+      end
+      current_node.data == data
+    end
+  end
+
+  def remove_by_index(position)
+    return false if @handle.tail?
+    node_before_index = find_by_index(position - 1)
+    node_at_index = node_before_index.next_node
+    node_after_index = node_at_index.next_node
+    node_before_index.next_node = node_after_index
+    node_at_index
+  end
+
+  def remove_by_value(data)
+    return false if @handle.tail?
+    current_node = @handle
+    while current_node.next_node.data != data
+      current_node = current_node.next_node
+    end
+    new_next_node = current_node.next_node.next_node
+    current_node.next_node
+    current_node.next_node = new_next_node
+  end
 end

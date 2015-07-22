@@ -1,30 +1,23 @@
 class LinkedList
 
-  attr_accessor :head
+  def initialize
+    @handle = Node.new
+  end
 
-  include Enumerable
+  def head
+    @handle.next_node && @handle.next_node.data
+  end
 
   def prepend(data)
-    @head = Node.new(data, head)
+    node = Node.new(data)
+    first_element = @handle.next_node
+    @handle.next_node = node
+    node.next_node = first_element
   end
-
-  def push
-
+  
+  def pop (node = @handle)
+    return node if node.next_node.next_node.nil?
+    find_tail(node.next_node)
   end
-
-#find all the nodes beyond this node
-
-#####THINGS TO DO#####
-
-  #append items to the end of the list
-
-  #prepend items to the beginning of the list
-
-  #insert an item into the middle of the list
-
-  #includes? gives back true or false for
-    #whether a given value is in the list
-
-  #.....etc......
 
 end
