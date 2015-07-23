@@ -13,10 +13,10 @@ class LinkedListTest < Minitest::Test
 
   def test_that_nodes_are_connected
     list = LinkedList.new
-    node3 = Node.new('travis')
-    node2 = Node.new('lani', node3)
-    node1 = Node.new('brett', node2)
-    assert_equal 'travis', list.find_tail(node1).data
+    list.append('travis')
+    list.append('lani')
+    list.append('bret')
+    assert_equal 'bret', list.find_tail.data
   end
 
   def test_to_append_node_when_empty
@@ -34,7 +34,7 @@ class LinkedListTest < Minitest::Test
 
   def test_head_call_when_empty
     list = LinkedList.new
-    assert_equal nil, list.head
+    refute list.head
   end
 
   def test_to_find_tail_value_when_empty
@@ -200,7 +200,7 @@ class LinkedListTest < Minitest::Test
     refute list.remove_by_index(0)
   end
 
-  def test_for_removing_by_index_node
+  def test_remove_by_index_in_middle
     list = LinkedList.new
     list.append('travis')
     list.append('lani')
@@ -209,7 +209,7 @@ class LinkedListTest < Minitest::Test
     assert_equal 'bridgette', list.find_by_index(1).data
   end
 
-  def test_for_removing_node_by_index_at_end_of_list
+  def test_for_removing_by_index_at_end_of_list
     list = LinkedList.new
     list.append('travis')
     list.append('lani')
@@ -230,6 +230,17 @@ class LinkedListTest < Minitest::Test
     list.append('bridgette')
     list.remove_by_value('lani')
     assert_equal 'bridgette', list.find_by_index(1).data
+  end
+
+  def test_finding_the_distance_between_different_nodes
+    list = LinkedList.new
+    list.append('travis')
+    list.append('lani')
+    list.append('bridgette')
+    list.append('val')
+    list.append('nate')
+    list.append('kaycee')
+    assert_equal 3, list.distance_between_two('bridgette', 'kaycee')
   end
 
 end

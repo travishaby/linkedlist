@@ -17,9 +17,12 @@ class LinkedList
     node.next_node = first_element
   end
 
-  def find_tail(node = @handle)
-    return node if node.next_node.nil?
-    find_tail(node.next_node)
+  def find_tail
+    current_node = @handle
+    until current_node.tail?
+      current_node = current_node.next_node
+    end
+    current_node
   end
 
   def tail
@@ -126,4 +129,23 @@ class LinkedList
     current_node.next_node
     current_node.next_node = new_next_node
   end
+
+  #Find the distance between two nodes
+  def distance_between_two(data1, data2)
+    node1 = @handle
+    node2 = @handle
+    counter1 = 0
+    counter2 = 0
+    until node1.data == data1
+      node1 = node1.next_node
+      counter1 += 1
+    end
+    until node2.data == data2
+      node2 = node2.next_node
+      counter2 += 1
+    end
+    counter = counter1 - counter2
+    counter.abs
+  end
+
 end
