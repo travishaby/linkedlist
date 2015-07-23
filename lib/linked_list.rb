@@ -132,20 +132,18 @@ class LinkedList
 
   #Find the distance between two nodes
   def distance_between_two(data1, data2)
-    node1 = @handle
-    node2 = @handle
-    counter1 = 0
-    counter2 = 0
-    until node1.data == data1
-      node1 = node1.next_node
-      counter1 += 1
-    end
-    until node2.data == data2
-      node2 = node2.next_node
-      counter2 += 1
-    end
-    counter = counter1 - counter2
+    counter = count_to_value(data1) - count_to_value(data2)
     counter.abs
+  end
+
+  def count_to_value(data)
+    counter = 0
+    node = @handle
+    until node.data == data
+      node = node.next_node
+      counter += 1
+    end
+    counter
   end
 
 end
