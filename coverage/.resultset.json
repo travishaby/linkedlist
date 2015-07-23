@@ -1,13 +1,18 @@
 {
   "MiniTest": {
     "coverage": {
-      "/Users/travishaby/turing/module-1/linkedlist/recursive_linked_list.rb": [
+    },
+    "timestamp": 1437661435
+  },
+  "Unit Tests": {
+    "coverage": {
+      "/Users/travishaby/turing/module-1/linkedlist/lib/recursive_linked_list.rb": [
         1,
         null,
         1,
         null,
         1,
-        10,
+        9,
         null,
         null,
         1,
@@ -36,20 +41,20 @@
         null,
         null,
         1,
-        2,
+        1,
         1,
         null,
         null,
         null
       ],
-      "/Users/travishaby/turing/module-1/linkedlist/node.rb": [
+      "/Users/travishaby/turing/module-1/linkedlist/lib/node.rb": [
         1,
         null,
         1,
         null,
         1,
-        27,
-        27,
+        26,
+        26,
         null,
         null,
         1,
@@ -63,6 +68,6 @@
         null
       ]
     },
-    "timestamp": 1437621658
+    "timestamp": 1437661557
   }
 }

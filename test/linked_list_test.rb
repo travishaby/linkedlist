@@ -5,9 +5,9 @@ SimpleCov.start
 gem 'minitest'
 require 'minitest/autorun'
 require 'minitest/pride'
-require './linked_list'
-require './node'
-require './node_test.rb'
+require './lib/linked_list'
+require './lib/node'
+require './test/node_test.rb'
 
 class LinkedListTest < Minitest::Test
 

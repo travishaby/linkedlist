@@ -5,7 +5,7 @@ SimpleCov.start
 gem 'minitest'
 require 'minitest/autorun'
 require 'minitest/pride'
-require './recursive_linked_list'
+require './lib/recursive_linked_list'
 
 class LinkedListTest < Minitest::Test
 
